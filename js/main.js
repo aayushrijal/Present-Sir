@@ -31,5 +31,7 @@ var roll=1;
 		$("#rollNoDisplay").html(roll);
 		}
 	});
-
+$(".menuIcon").click(function(){
+	$("#leftPanel").toggleClass("leftPanel1");
+	});
 
