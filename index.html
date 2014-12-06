@@ -5,9 +5,9 @@
 	<meta name="viewport" content="width=device-width; initial-scale=1" />
 	<title>Present Sir</title>
 	 <script src="js/jquery-1.11.1.min.js"></script>
-	<!--script src="js/jquery.mobile-1.4.5.min.js"></script-->
 	<link media="all" type="text/css" rel="stylesheet" href="css/main.css" >
-	
+	<link media="all" type="text/css" rel="stylesheet" href="css/addon.css" >
+
 </head>
 <body>
 <div id="mainContainer" >
@@ -18,12 +18,16 @@
 		<span>hello sir!!</span>
 	</div>
 	<div id="rollno">
-		<span><h1>123</h1></span>
+		<span><h1 id="rollNoDisplay">2</h1></span>
 	</div>
 	<div id="buttons">
 		<img class="present" src="icons/present.svg" width="49">
 		<img class="absent" src="icons/absent.svg" width="75">
 	</div>
+	<input type="range" min=1 step=1 max=44 id="rangeSlide" value=1 oninput="$('#rollNoDisplay').text(this.value)"></input>
+	 <div id="amountInput"></div>
+    <script type="text/javascript" src="js/main.js"></script>
+	
 </div>
 </body>
 </html>
