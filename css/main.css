@@ -15,9 +15,11 @@ body{
 	}
 #leftPanel{
 	margin: -8px;
-	/*height: device-height;*/
 	border: 1px solid #000;
 	transform: translateX(-100%);
+	}
+.leftPanel1{
+	transform: translateX(-50%);
 	}
 #header{
 	/*display:none;*/
