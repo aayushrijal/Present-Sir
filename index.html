@@ -5,29 +5,25 @@
 	<meta name="viewport" content="width=device-width; initial-scale=1" />
 	<title>Present Sir</title>
 	 <script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/jquery.mobile-1.4.5.min.js"></script>
-	<link media="all" type="text/css" rel="stylesheet" href="css/jquery.mobile.structure-1.4.5" >
+	<!--script src="js/jquery.mobile-1.4.5.min.js"></script-->
+	<link media="all" type="text/css" rel="stylesheet" href="css/main.css" >
 	
 </head>
 <body>
-<div data-role="page" id="pageone">
-  <div data-role="panel" id="myPanel"> 
-    <h2>Panel Header</h2>
-    <p>You can close the panel by clicking outside the panel, pressing the Esc key or by swiping.</p>
-  </div> 
-
-  <div data-role="header">
-    <h1>Page Header</h1>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p>Click on the button below to open the Panel.</p>
-    <a href="#myPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Open Panel</a>
-  </div>
-
-  <div data-role="footer">
-    <h1>Page Footer</h1>
-  </div> 
-</div> 
+<div id="mainContainer" >
+	<div id="leftPanel">
+		<div class="innerpanelText">this is the panel</div>
+	</div>
+	<div id="header">
+		<span>hello sir!!</span>
+	</div>
+	<div id="rollno">
+		<span><h1>123</h1></span>
+	</div>
+	<div id="buttons">
+		<img class="present" src="icons/present.svg" width="49">
+		<img class="absent" src="icons/absent.svg" width="75">
+	</div>
+</div>
 </body>
 </html>

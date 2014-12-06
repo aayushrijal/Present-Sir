@@ -1,0 +1,39 @@
+#leftPanel{
+	margin: -8px;
+	/*height: device-height;*/
+	border: 1px solid #000;
+	transform: translateX(-100%);
+	}
+#header{
+	/*display:none;*/
+	background-color: #000;
+	opacity: 0.5;
+	color: #fff;
+	font-family: sans;
+	margin: -21px -8px 0 -8px;
+	text-align: center;
+	padding: 5px;
+	}
+#rollno{
+	text-align: center;
+	color: #344;
+	font-size: 50px;
+	font-family: arial;
+	}
+#buttons{
+	width: 220px;
+	margin: 0 auto;
+/*	border: 1px solid #000;*/
+	}
+.present{
+	padding: 12px;
+/*	border:1px solid #000;*/
+	display: inline-block;
+	margin: 0 15px;
+	}
+.absent{
+/*	border:1px solid #000;*/
+	display: inline-block;
+	margin: 0 15px;
+	}
+
