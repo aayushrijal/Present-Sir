@@ -28,15 +28,20 @@
 	<div id="navbar">
 		<span>hello again!!</span>
 	</div>
-	<div id="rollno">
-		<span><h1 id="rollNoDisplay">2</h1></span>
+	<div id="rollnoPage">
+		<div id="rollno">
+			<span><h1 id="rollNoDisplay">2</h1></span>
+		</div>
+		<div id="buttons">
+			<img class="present" src="icons/present.svg" width="60">
+			<img class="absent" src="icons/absent.svg" width="45">
+		</div>
+		<input type="range" min=1 step=1 max=44 id="rangeSlide" value=1 oninput="$('#rollNoDisplay').text(this.value)"></input>
+	 	<div id="amountInput"></div>
 	</div>
-	<div id="buttons">
-		<img class="present" src="icons/present.svg" width="60">
-		<img class="absent" src="icons/absent.svg" width="45">
+	<div id="pastRecords">
 	</div>
-	<input type="range" min=1 step=1 max=44 id="rangeSlide" value=1 oninput="$('#rollNoDisplay').text(this.value)"></input>
-	 <div id="amountInput"></div>
+	
     <script type="text/javascript" src="js/main.js"></script>
 	
 </div>

@@ -12,7 +12,13 @@ var roll=1;
 		}		
 		if(roll==$("#rangeSlide").attr("max"))
 		{
-			
+			var presentStudents=0;
+			for(i=0;i<$("#rangeSlide").attr("max");i++){
+				if(student[i][2]==1)
+					presentStudents++;
+			}
+			presentStudents+="/"+$("#rangeSlide").attr("max");
+			$("#rollNoDisplay").html(presentStudents);
 		}else{
 		$("#rangeSlide").val(++roll);
 		$("#rollNoDisplay").html(roll);
