@@ -32,6 +32,6 @@ var roll=1;
 		}
 	});
 $(".menuIcon").click(function(){
-	$("#leftPanel").toggleClass("leftPanel1");
+	$("#leftPanel").toggleClass("leftPanel1").toggleClass("leftPanel2");
 	});
 

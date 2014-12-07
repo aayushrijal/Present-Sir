@@ -13,12 +13,12 @@
 body{
 	background-color: #fafafa;
 	}
-#leftPanel{
+.leftPanel1{
 	margin: -8px;
-	border: 1px solid #000;
+	barder:1px solid #000;
 	transform: translateX(-100%);
 	}
-.leftPanel1{
+.leftPanel2{
 	transform: translateX(-50%);
 	}
 #header{
