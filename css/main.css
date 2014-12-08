@@ -13,22 +13,21 @@
 body{
 	background-color: #f5f5f5;
 	}
-.leftPanel1{
+#leftPanel{
 	margin: -8px;
 	border:1px solid #acc;
 	width: 50%;
 	position: absolute;
-	height: 500px;
+	height: 900px;
+	}
+.leftPanel1{
+	display:none;
 	transform: translateX(-100%);
 	transition: all 0.3s;
 	background-color: #acc;
 	}
 .leftPanel2{
-	margin: -8px;
-	position: absolute;
-	border: 1px solid #acc;
-	width: 50%;
-	height: 900px;
+	display:block;
 	transition: all 0.3s;
 	background-color: #f5f5f5;
 	box-shadow: 200px 1px 300px rgba(3,3,3,0.8);
