@@ -13,47 +13,41 @@
 body{
 	background-color: #f5f5f5;
 	}
-#leftPanel{
+.leftPanel1{
 	margin: -8px;
-	border:1px solid #acc;
-	width: 50%;
+	top: 62px;
 	position: absolute;
 	height: 900px;
-	}
-.leftPanel1{
-	display:none;
+	background: #f5f5f5;
 	transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
 	transition: all 0.3s;
-	background-color: #acc;
+	overflow: hidden;
 	}
 .leftPanel2{
-	display:block;
+	transform: translateX(-1%);
+	-webkit-transform: translateX(-1%);
 	transition: all 0.3s;
-	background-color: #f5f5f5;
-	box-shadow: 200px 1px 300px rgba(3,3,3,0.8);
-	z-index: 2;
+	margin: -6px;
+	width: 80%;
+	top: 62px;
+	position: absolute;
+	height: 900px;
+	background: #f5f5f5;
+	position: absolute;
+	box-shadow: 1px 2px 4px #9e9e9e;
 	}
+
 #innerpanelText{
 	font-family: Robotothin;
 	padding: 10px;
 	margin-top: -8px;
 	}
+
 .teachersName{
-	color: #fff;
-	padding: 20.5px;	
-	text-align: right;
-	font-family: arial;
-	width: 84%;
-	margin-left: -11px;
-	vertical-align: middle;
-	background-color: #135571;
-	position: absolute;
-	}
-	
-.belowteachersName{
 	background-color: #26abe2;
-	margin: 59px -11px 0 -11px;
-	padding: 8px;
+	margin: -3px -10px 0 -10px;
+	padding: 8px 0;
 	text-align: center;
 	font-family: arial;
 	color: #fff;
@@ -61,11 +55,11 @@ body{
 	}
 #option{
 	margin: 15px 0;
-	padding: 2px 0 9px 10px;
+	padding: 2px 0 9px 20px;
 }
 .hr1{
-	border: 0.1px solid #e0e0e0;
-	margin: -10px;
+	border: 1px solid #e0e0e0;
+	margin: 10px -10px;
 	}
 .addGroup{
 	padding: 15px;
@@ -140,31 +134,66 @@ body{
 
 #newGroupForm{
 	display: none;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	border-radius: 2px;
-	box-shadow: 1px 2px 4px #9e9e9e;
-	text-align: center;
 	color: #878787;
-	font-size: 20px;
 	margin: 20px auto;
-	padding: 20px;
+	padding: 0 20px;
 	font-family: sans;
 	}
-/*#innerForm{
-	display: inline-block;
-	border: 1px solid #000;
-	padding: 1px 30px 0 20px;
-	}*/
+.year{
+	margin: 10px 81px 10px 29px;
+	}
+ .semester{
+ 	margin: 10px 43px 10px 29px;
+ }
+  .batch{
+  	margin: 10px 70px 10px 29px;
+  }
+.subject, .college{
+	margin: 10px 49px 10px 29px;
+	}
+.subjectInput, .collegeInput{
+  	border-bottom: 1px solid #26abe2;
+  	border-top: 0 solid #f5f5f5;
+  	border-left: 0 solid #f5f5f5;
+  	border-right: 0 solid #f5f5f5;
+	width: 50%;
+	padding: 8px;
+	background: #f5f5f5;
+	}
+input[type=text]:focus{
+	outline: 0;
+	}
 .selectOpt{
 	border: 1px solid #ccc;
 	background-color: #fff;
 	border-radius: 2px;
+	right: 10px;
 	box-shadow: 1px 2px 4px #9e9e9e;
 	text-align: center;
 	color: #878787;
 	font-size: 20px;
-	margin: 20px auto;
+	margin: 5px auto;
 	padding: 6px;
 	font-family: sans;
+	}
+.addButton{
+	background: transparent;
+	outline: 0;
+	border: 0;
+ 	color: #878787;
+ 	margin-left: 24px;
+ 	font-size: 16px; 
+ 	padding: 8px;
+ 	font-weight: bold;
+	}
+.cancelButton{
+	background: transparent;
+	outline: 0;
+	border: 0;
+ 	color: #878787;
+ 	margin-right: 24px;
+ 	font-size: 16px; 
+ 	padding: 8px;
+ 	float: right;
+ 	font-weight: bold;
 	}

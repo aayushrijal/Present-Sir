@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<!--meta name="viewport" content="width=device-width; initial-scale=1" /-->
+	<meta name="viewport" content="width=device-width; initial-scale=1" />
 	<title>Present Sir</title>
 	 <script src="js/jquery-1.11.1.min.js"></script>
 	<link media="all" type="text/css" rel="stylesheet" href="css/main.css" >
@@ -15,9 +15,8 @@
 	<div id="leftPanel" class="leftPanel1">
 		<div id="innerpanelText">
 			<div class="teachersName">Teachers Name</div>
-			<div class="belowteachersName">a</div>
 			<div id="option">Past Records</div>
-			<hr class="hr1" />
+			<div class="hr1"> </div>
 			<div id="classList">
 				<div class="addGroup" id="addGroup"><!--img src="icons/addgroup.svg" --><h2>+ Add Class</h2></div>
 			</div>		
@@ -45,31 +44,41 @@
 	<div id="pastRecords">
 	</div>
 	<div id="newGroupForm">
-
 			<form action="#">
+			<label for='subject' class="subject">Subject</label>
+			<input type="text" class="subjectInput" />
+			<div class="hr1"></div>
+			<label for='college' class="college">College</label>
+			<input type="text" class="collegeInput" />
+			<div class="hr1"></div>
+			<label for='batch' class="batch">Batch</label>
+					<select name='batch' id='' class="selectOpt">
+						<option value='2067'>2067</option>
+						<option value='2068' selected>2068</option>
+						<option value='2069'>2069</option>
+						<option value='2070'>2070</option>
+						<option value='2071'>2071</option>
+						<option value='2072'>2072</option>
+					</select>
+				<div class="hr1"></div>
 				<label for='year' class="year">Year</label>
 					<select name='semester' id='' class="selectOpt">
 						<option value='1'>I</option>
 						<option value='2'>II</option>
 						<option value='3'>III</option>
 						<option value='4' selected>IV</option>
-					</select><br>
+					</select>
+				<div class="hr1"></div>	
 				<label for='semester' class="semester">Semester</label>
 					<select name='semester' id='' class="selectOpt">
 						<option value='1'>I</option>
 						<option value='2'>II</option>
-					</select><br>
-				<label for='batch' class="batch">Batch</label>
-					<select name='batch' id='' class="selectOpt">
-						<option value='2067'>2067</option>
-						<option value='2068'>2068</option>
-						<option value='2069'>2069</option>
-						<option value='2070' selected>2070</option>
-						<option value='2071'>2071</option>
-						<option value='2072'>2072</option>
 					</select>
+				<div class="hr1"></div>	
 			</form>
-		
+			<button value="add" class="addButton">Add</button>
+			<button value="cancel" class="cancelButton">Cancel</button>
+			<div class="hr1"></div>
 	</div>
 	
     <script type="text/javascript" src="js/main.js"></script>

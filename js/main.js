@@ -45,14 +45,14 @@ var roll=1;
 		$("#rollNoDisplay").html(roll);
 		}
 	});
-$("#leftPanel").on("click",function(){$("#leftPanel").toggleClass("leftPanel1").toggleClass("leftPanel2")});
+$("#leftPanel").on("click",function(){$("#leftPanel").toggleClass("leftPanel1 leftPanel2")});
 	
 $(".menuIcon").click(function(){
-	$("#leftPanel").toggleClass("leftPanel1").toggleClass("leftPanel2");
+	$("#leftPanel").toggleClass("leftPanel1 leftPanel2");
 	});
 $("#addGroup").click(function(){
 	$("#rollnoPage").hide();
-	//$("#leftPanel").toggleClass("leftPanel1").toggleClass("leftPanel2");
+	$("#leftPanel").toggleClass("leftPanel1 leftPanel2");
 	$("#newGroupForm").show();
 		
 	});
