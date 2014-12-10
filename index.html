@@ -14,7 +14,9 @@
 <div id="mainContainer" >
 	<div id="leftPanel" class="leftPanel1">
 		<div id="innerpanelText">
-			<div id="option">Past Records</div>
+			<div id="option">Past Records
+			<div id="pastRecord" class="pastRecord" style="display:none"></div>
+			</div>
 			<div class="hr1"> </div>
 			<div class="classWrapper">
 			<div id="classList">
@@ -49,13 +51,13 @@
 	<div id="newGroupForm">
 			<form action="#">
 			<label for='subject' class="subject">Subject</label>
-			<input type="text" class="subjectInput" />
+			<input type="text" class="subjectInput" value="Engineering"/>
 			<div class="hr1"></div>
 			<label for='college' class="college">College</label>
-			<input type="text" class="collegeInput" />
+			<input type="text" class="collegeInput" value="KEC"/>
 			<div class="hr1"></div>
 				<label for='faculty' class="faculty">Faculty</label>
-					<select name='faculty' id='' class="selectOpt">
+					<select name='faculty' id='facultyId' class="selectOpt">
 						<option value='BCT' selected>BCT</option>
 						<option value='BEX'>BEX</option>
 						<option value='BEL'>BEL</option>
@@ -64,34 +66,35 @@
 					</select>
 				<div class="hr1"></div>
 				<label for='section' class="section">Section</label>
-					<select name='section' id='' class="selectOpt">
+					<select name='section' id='sectionId' class="selectOpt">
 						<option value='A' selected>A</option>
 						<option value='B'>B</option>
 						<option value='C'>C</option>
 					</select>
 				<div class="hr1"></div>
 				<label for='batch' class="batch">Batch</label>
-					<select name='batch' id='' class="selectOpt">
-						<option value='2067'>2067</option>
-						<option value='2068' selected>2068</option>
-						<option value='2069'>2069</option>
-						<option value='2070'>2070</option>
-						<option value='2071'>2071</option>
-						<option value='2072'>2072</option>
+					<select name='batch' id='batchId' class="selectOpt">
+						<option value='067'>2067</option>
+						<option value='068' selected>2068</option>
+						<option value='069'>2069</option>
+						<option value='070'>2070</option>
+						<option value='071'>2071</option>
+						<option value='072'>2072</option>
 					</select>
 				<div class="hr1"></div>
 				<label for='year' class="year">Year</label>
-					<select name='semester' id='' class="selectOpt">
-						<option value='1'>I</option>
-						<option value='2'>II</option>
-						<option value='3'>III</option>
-						<option value='4' selected>IV</option>
+					<select name='year' id='yearId' class="selectOpt">
+						<option value='I'>I</option>
+						<option value='II'>II</option>
+						<option value='III'>III</option>
+						<option value='IV' selected>IV</option>
 					</select>
 				<div class="hr1"></div>	
-				<label for='semester' class="semester">Semester</label>
-					<select name='semester' id='sem' class="selectOpt">
-						<option value='1' selected>I</option>
-						<option value='2'>II</option>
+				<label for='semester' class="semester">Semester</label> 
+  
+					<select name='semester' id='semesterId' class="selectOpt">
+						<option value='I' selected>I</option>
+						<option value='II'>II</option>
 					</select>
 				<div class="hr1"></div>	
 			</form>

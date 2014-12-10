@@ -16,7 +16,8 @@ transaction.executeSql('select * from classIndex',[],function(transaction, resul
 		     					 for (var j=0; j<results.rows.length; j++) {
 										var row = results.rows.item(j);
 			        						$("#classList").prepend($(document.createElement("div")).html(row.nameOfClass).addClass("addGroup"));
-						 			}
+										$("#pastRecord").append($(document.createElement("div")).html(row.nameOfClass));						 			
+									}
 								});
 	});
 })();
@@ -84,7 +85,7 @@ function doAppendFile(e){
 	}
 function gotFiles(entries){
 	var s="";
-	for(var i=0;len=entries.length;i<len;i++){
+	for(var i=0,len=entries.length;i<len;i++){
 		s+=entries[i].fullPath;
 		if(entries[i].isFile){
 			s+=" [F]";
@@ -107,5 +108,11 @@ function appendFile(f){
 }	
 function onError(e){
 	alert("an error occurred");
-} 
+}
+
+/*function addNewClass(){
+var temp=$("#collegeInput").val();
+temp+=(" "+$("#batchId").val()+" "+$("#facultyId").val()+"'"+$("#sectionId").val()+"' "+$("#yearId").val()+'/'+$("#semesterId").val());
+alert(temp);
+};*/
   
