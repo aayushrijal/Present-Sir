@@ -14,7 +14,6 @@
 <div id="mainContainer" >
 	<div id="leftPanel" class="leftPanel1">
 		<div id="innerpanelText">
-			<div class="teachersName">Teachers Name</div>
 			<div id="option">Past Records</div>
 			<div class="hr1"> </div>
 			<div id="classList">
@@ -30,6 +29,7 @@
 	<div id="navbar">
 		<span>hello again!!</span>
 	</div>
+	<div id="subContainer">
 	<div id="rollnoPage">
 		<div id="rollno">
 			<span><h1 id="rollNoDisplay">2</h1></span>
@@ -51,7 +51,23 @@
 			<label for='college' class="college">College</label>
 			<input type="text" class="collegeInput" />
 			<div class="hr1"></div>
-			<label for='batch' class="batch">Batch</label>
+				<label for='faculty' class="faculty">Faculty</label>
+					<select name='faculty' id='' class="selectOpt">
+						<option value='BCT' selected>BCT</option>
+						<option value='BEX'>BEX</option>
+						<option value='BEL'>BEL</option>
+						<option value='BCE'>BCE</option>
+						<option value='BArch'>BArch</option>
+					</select>
+				<div class="hr1"></div>
+				<label for='section' class="section">Section</label>
+					<select name='section' id='' class="selectOpt">
+						<option value='A' selected>A</option>
+						<option value='B'>B</option>
+						<option value='C'>C</option>
+					</select>
+				<div class="hr1"></div>
+				<label for='batch' class="batch">Batch</label>
 					<select name='batch' id='' class="selectOpt">
 						<option value='2067'>2067</option>
 						<option value='2068' selected>2068</option>
@@ -80,7 +96,7 @@
 			<button value="cancel" class="cancelButton" id="cancelNewRegister">Cancel</button>
 			<div class="hr1"></div>
 	</div>
-	
+	</div>
     <script type="text/javascript" src="js/main.js"></script>
 	
 </div>

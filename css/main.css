@@ -12,9 +12,10 @@
 
 body{
 	background-color: #f5f5f5;
+	margin: 0;
+	padding: 0;
 	}
 .leftPanel1{
-	margin: -8px;
 	top: 62px;
 	position: absolute;
 	height: 92%;
@@ -40,11 +41,11 @@ body{
 
 #innerpanelText{
 	font-family: Robotothin;
-	padding: 10px;
-	margin-top: -8px;
+	padding: 40px;
 	}
 
-.teachersName{
+/*.teachersName{
+	margin-top: 90px;
 	background-color: #26abe2;
 	margin: -3px -10px 0 -10px;
 	padding: 8px 0;
@@ -52,7 +53,7 @@ body{
 	font-family: arial;
 	color: #fff;
 	box-shadow: 2px 3px 4px #9e9e9e;
-	}
+	}*/
 #option{
 	margin: 15px 0;
 	padding: 2px 0 9px 20px;
@@ -71,10 +72,11 @@ body{
 	}
 #header{
 	/*display:none;*/
+	position: fixed;
+	width: 100%;
 	background-color: #135571;
 	color: #fff;
 	font-family: arial;
-	margin: -8px -8px 0 -8px;
 	z-index: 1;
 	}
 .menuIcon{
@@ -88,13 +90,17 @@ body{
 	padding: 17px;	
 	}
 #navbar{
+	top: 56px;
+	position: relative;
 	background-color: #26abe2;
-	margin: 0 -8px;
 	padding: 8px;
 	text-align: center;
 	font-family: arial;
 	color: #fff;
 	box-shadow: 2px 3px 4px #9e9e9e;
+	}
+#subContainer{
+	margin-top: 70px;
 	}
 #rollnoPage{
 	/*display: none;*/
@@ -108,7 +114,7 @@ body{
 	color: #878787;
 	font-size: 50px;
 	font-family: Robotothin;
-	margin: 20px auto;
+	margin: 20px 10px;
 	}
 #buttons{
 	width: 300px;
@@ -139,17 +145,23 @@ body{
 	padding: 0 20px;
 	font-family: sans;
 	}
+.faculty{
+	margin: 10px 33px 10px 29px;
+}
+.section{
+	margin: 10px 31px 10px 29px;
+}
 .year{
-	margin: 10px 81px 10px 29px;
+	margin: 10px 57px 10px 29px;
 	}
  .semester{
- 	margin: 10px 43px 10px 29px;
+ 	margin: 10px 17px 10px 29px;
  }
   .batch{
-  	margin: 10px 70px 10px 29px;
+  	margin: 10px 45px 10px 29px;
   }
 .subject, .college{
-	margin: 10px 49px 10px 29px;
+	margin: 10px 30px 10px 29px;
 	}
 .subjectInput, .collegeInput{
   	border-bottom: 1px solid #26abe2;
