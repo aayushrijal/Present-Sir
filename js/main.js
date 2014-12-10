@@ -52,7 +52,7 @@ $(".menuIcon").click(function(){
 	});
 $("#addGroup").click(function(){
 	$("#rollnoPage").hide();
-	$("#leftPanel").toggleClass("leftPanel1 leftPanel2");
+	//$("#leftPanel").toggleClass("leftPanel1 leftPanel2");
 	$("#newGroupForm").show();
 		
 	});

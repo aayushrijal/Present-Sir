@@ -63,40 +63,49 @@ db.transaction(function (transaction) {
 								});
 		});
 }
-	
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
+
+function onDeviceReady(){
+	window.requestFileSystem(LocalFileSystem.PERSISTENT,0,onFSSuccess,onError);
 }
-function fileSystemFail(){
-	alert("File System API failed");
-	}
-function dirReady(entry) {
-		window.appRootDir = entry;
-		console.log(JSON.stringify(window.appRootDir));
-	}
-function fileSystemSuccess(fileSystem) {
-	var csvContent = "data:text/csv;charset=utf-8,";
-	csvContent+="aces,rab,todd,roben\naces,dfg,eret,dfgdfg";
-	var encodedUri = encodeURI(csvContent);
-	var directoryEntry = fileSystem.root; // to get root path to directory
-    	fileSystem.root.getDirectory(window.appRootDirName, {create : true,exclusive : false}, dirReady, fileSystemFail);
-	/*var rootdir = fileSystem.root;
-    		alert(rootdir);	
-    	var fp = rootdir.fullPath;
-    	fp = fp+"/attendanceRegister.csv";
-    		alert(fp);*/
-	ft=new FileTransfer();	
-	ft.download(
-    		encodedUri,
-    		window.appRootDir.fullPath+"/ar.csv",
-    		function(entry) {
-        		alert("download complete: " + entry.fullPath);
-    		},
-    		function(error) {
-        		alert("Download Failed");
-    		}
-);
+function init(){
+	document.addEventListener("deviceready",onDeviceReady,true);
 }
+function onFSSuccess(fs){
+	fileSystem=fs;
+	$(".infoText").addEventListener("touchstart",doDirectoryListing);
+  	$(".optionIcon").addEventListener("touchstart",doAppendFile); 	
+}
+function doDirectoryListing(e){
+	var dirReader=fileSystem.root.createReader();
+	dirReader.readEntries(gotFiles,onError);
+}
+function doAppendFile(e){
+	fileSystem.root.getFile("test.txt",{create:true},appendFile,onError);
+	}
+function gotFiles(entries){
+	var s="";
+	for(var i=0;len=entries.length;i<len;i++){
+		s+=entries[i].fullPath;
+		if(entries[i].isFile){
+			s+=" [F]";
+		}
+		else{
+			s+=" [D]";
+		}
+		s+="<br/>";
+	}
+	alert(s);
+}
+function appendFile(f){
+	f.createWriter(function(writera){
+		writera.onwrite=function(){
+			alert("Done writing to file");
+			}
+		writera.seek(writera.length);
+		writera.write("Test at"+new Date().toString() + "\n");
+	})
+}	
+function onError(e){
+	alert("an error occurred");
+} 
   
