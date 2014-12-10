@@ -21,12 +21,11 @@
 	<feature name="http://api.phonegap.com/1.0/device" />
 	<preference name="permissions" value="none"/>
 	<preference name="phonegap-version"  value="3.1.0" />
+	<preference name="Fullscreen" value="true" />
 	<preference name="orientation"  value="portrait" /> 
 	<preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
 	<preference name="AndroidPersistentFileLocation" value="Internal" />
 	
-	<plugins>
-	<plugin name="SQLitePlugin" value="org.pgsqlite.SQLitePlugin"/>
 	<gap:plugin name="fork.cordova.file" version="1.2.1" />
 	
 </widget>
