@@ -12,7 +12,6 @@ var roll=1; //roll number starts at;
 			student[roll-1]=1;
 			//student[roll-1][0]++;
 			db.transaction(function(transaction){
-			alert(currentTable+" "+batch);
 			//alert(currentTable+' '+(batch+roll)+' '+todaysDate);
 			transaction.executeSql('UPDATE '+currentTable+' SET attendance=1 WHERE studentId=? AND date=?',[batch+roll-1,todaysDate]);
 			});	
@@ -75,7 +74,7 @@ $("#addNewRegister").click(function(){
 		transaction.executeSql('INSERT INTO classIndex(nameOfClass,batch) VALUES(?,?)',[temp,batch]);
 		transaction.executeSql('SELECT id FROM classIndex WHERE nameOfClass=?',[temp],function(transaction,results){
 			sqlTableName=results.rows.item(0).id;
-											});
+								});
 		});
 	db.transaction(function(transaction){
 		sqlTableNameParsed=sqlTableName;
@@ -85,21 +84,20 @@ $("#addNewRegister").click(function(){
 		});		
 	$("#rollnoPage").show();
 	$("#newGroupForm").hide();
+	$("#classList").prepend($(document.createElement("div")).html(temp).addClass("addGroup").attr("id","class"+6));
 	currentTable=sqlTableName;
 	db.transaction(function(transaction){
 						transaction.executeSql("SELECT batch FROM classIndex WHERE id=?",[sqlTableNameParsed],function(transaction,results){
 						batch=parseInt(results.rows.item(0).batch);
 						});
-	});
 	localStorage["#class"+sqlTableNameParsed+"md"] = todaysDate;
 	for(i=1;i<45;i++){
 		(function(i){
 		db.transaction(function(tx){
-				tx.executeSql("INSERT INTO class"+sqlTableNameParsed+"(studentId,date,attendance) VALUES(?,?,?)",[batch+i,todaysDate,0]);
+				tx.executeSql("INSERT INTO class"+row.id+"(studentId,date,attendance) VALUES(?,?,?)",[batch+i,todaysDate,0]);
 				});
 		})(i);		
 		};
-	$("#classList").prepend($(document.createElement("div")).html(temp).addClass("addGroup").attr("id",sqlTableName));
 	student=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 	$("#classDisplay").html(temp);
 	

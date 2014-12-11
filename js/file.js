@@ -1,10 +1,10 @@
 var todaysDate=new Date();
-var studentId="680"; //handling left for 68102;
+var studentId=" "; //handling left for 68102;
 todaysDate=todaysDate.getMonth()+" "+todaysDate.getDate();
 var db = openDatabase('studentDatabase','1.0','Attendance Register',3*1024*1024);
 db.transaction(function(transaction){
-		transaction.executeSql('CREATE TABLE IF NOT EXISTS classIndex(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nameOfClass TEXT NOT NULL)',[],initializeDatabase);
-});
+		transaction.executeSql('CREATE TABLE IF NOT EXISTS classIndex(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nameOfClass TEXT NOT NULL,batch INTEGER NOT NULL)',[],initializeDatabase);
+		});
 //});
 function initializeDatabase(){
 db.transaction(function(transaction){
@@ -17,6 +17,29 @@ transaction.executeSql('select * from classIndex',[],function(transaction, resul
 										var row = results.rows.item(j);
 			        						$("#classList").prepend($(document.createElement("div")).html(row.nameOfClass).addClass("addGroup").attr("id","class"+row.id));
 										$("#class"+row.id).click(function(){
+										currentTable="class"+row.id;
+										db.transaction(function(transaction){
+											transaction.executeSql("SELECT batch FROM classIndex WHERE id=?",[row.id],function(transaction,results){
+	batch=parseInt(results.rows.item(0).batch);
+});
+											
+		
+										
+										});
+if(( localStorage["#class"+row.id+"md"] == undefined)||(localStorage["#class"+row.id+"md"] !=todaysDate)){
+alert("not MOdified");
+localStorage["#class"+row.id+"md"] = todaysDate;
+for(i=1;i<45;i++){
+	(function(i){
+	db.transaction(function(tx){
+				tx.executeSql("INSERT INTO class"+row.id+"(studentId,date,attendance) VALUES(?,?,?)",[batch+i,todaysDate,0]);
+		});
+	})(i);		
+};
+}else{
+alert("already MOdified");
+}
+										student=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 										currentTable=this.id;
 										$("#classDisplay").html(this.innerHTML);
 					});
@@ -45,13 +68,7 @@ db.transaction(function(transaction){
 		transaction.executeSql('UPDATE '+nameOfTable+' SET attendance=1 WHERE studentId='+studentId+' AND date='+todaysDate);
 	});
 };
-function createTable(nameOfTable){
-	db.transaction(
-         function (transaction) {
-           	transaction.executeSql('CREATE TABLE IF NOT EXISTS ?(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, studentId INTEGER NOT NULL,date TEXT NOT NULL,attendance INTEGER );', [nameOfTable]);
-		alert("database Created");	
-         });
-};
+
 function selectFromTable(nameOfTable,whatToSelect)
 {
 db.transaction(function (transaction) {
@@ -64,53 +81,3 @@ db.transaction(function (transaction) {
 		});
 }
 
-function onDeviceReady(){
-	window.requestFileSystem(LocalFileSystem.PERSISTENT,0,onFSSuccess,onError);
-}
-(function init(){
-	document.addEventListener("deviceready",onDeviceReady,true);
-})();
-function onFSSuccess(fs){
-	fileSystem=fs;
-	$(".infoText").addEventListener("touchstart",doDirectoryListing);
-  	$(".optionIcon").addEventListener("touchstart",doAppendFile); 	
-}
-function doDirectoryListing(e){
-	var dirReader=fileSystem.root.createReader();
-	dirReader.readEntries(gotFiles,onError);
-}
-function doAppendFile(e){
-	fileSystem.root.getFile("test.txt",{create:true},appendFile,onError);
-	}
-function gotFiles(entries){
-	var s="";
-	for(var i=0,len=entries.length;i<len;i++){
-		s+=entries[i].fullPath;
-		if(entries[i].isFile){
-			s+=" [F]";
-		}
-		else{
-			s+=" [D]";
-		}
-		s+="<br/>";
-	}
-	alert(s);
-}
-function appendFile(f){
-	f.createWriter(function(writera){
-		writera.onwrite=function(){
-			alert("Done writing to file");
-			}
-		writera.seek(writera.length);
-		writera.write("Test at"+new Date().toString() + "\n");
-	})
-}	
-function onError(e){
-	alert("an error occurred");
-}
-/*function addNewClass(){
-var temp=$("#collegeInput").val();
-temp+=(" "+$("#batchId").val()+" "+$("#facultyId").val()+"'"+$("#sectionId").val()+"' "+$("#yearId").val()+'/'+$("#semesterId").val());
-alert(temp);
-};*/
-  
