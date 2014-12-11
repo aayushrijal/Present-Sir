@@ -106,7 +106,7 @@ body{
 	margin-top: 70px;
 	}
 #rollnoPage{
-	/*display: none;*/
+	display: none; /*display none here too*/
 	}
 #rollno{
 	border: 1px solid #ccc;
@@ -211,3 +211,27 @@ input[type=text]:focus{
  	float: right;
  	font-weight: bold;
 	}
+/*this property is for attendance of overall section*/
+#section-Rollno{
+/*	display: none; */
+}
+.table1{
+	padding-top: 20px;
+	font-family: sans-serif;
+	margin: 40px auto;
+	color:  #878787;
+	width: 280px;
+}
+.tr1, .tr2, .tr3, .tr4, .tr5, .tr6{
+	text-align: right;
+}
+.td1{
+	text-align: center;
+	border: 1px solid #878787;
+	width: 20px;
+	border-radius: 60%;
+	display: inline-block;
+	margin: 10px 5px;
+	padding: 2px;
+}
+/*the property is for attendance of overall section ends here*/
