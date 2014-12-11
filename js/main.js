@@ -1,54 +1,65 @@
-var currentTable="";
+var temp,sqlTableName,sqlTableNameParsed;
+
+var currentTable=" ";
+var section=1;
 var student= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var batch;
 var roll=1; //roll number starts at;
+var looproll=0;
 	$("#rollNoDisplay").text(roll);
 	$("#rangeSlide").on("change",function(){
 				roll=parseInt($("#rangeSlide").val());
 				$("#rollNoDisplay").html(roll);
 				});
 	$(".present").click(function(){
-		if(student[roll-1]==0){
-			student[roll-1]=1;
+		//if(student[looproll]==0){
+			student[looproll]=1;
 			//student[roll-1][0]++;
 			db.transaction(function(transaction){
-			alert(currentTable+" "+batch);
+			if(currentTable==" "){
+			alert("Select a table first");
+			}
 			//alert(currentTable+' '+(batch+roll)+' '+todaysDate);
 			transaction.executeSql('UPDATE '+currentTable+' SET attendance=1 WHERE studentId=? AND date=?',[batch+roll-1,todaysDate]);
 			});	
-		}		
+		//}		
 		if(roll==$("#rangeSlide").attr("max"))
 		{
 			var presentStudents=0;
-			for(i=0;i<$("#rangeSlide").attr("max");i++){
+			for(i=0;i<44;i++){
 				if(student[i]==1)
+					$("#a"+(i+1)).css("display:none");
 					presentStudents++;
 			}
 			presentStudents+="/"+$("#rangeSlide").attr("max");
 			$("#rollNoDisplay").html(presentStudents);
 		}else{
+		looproll++;
 		$("#rangeSlide").val(++roll);
 		$("#rollNoDisplay").html(roll);
 		}
 	});
 	$(".absent").click(function(){
-		if(student[roll-1]==1){
-			student[roll-1]=0;
-			//student[roll-1][0]--;
+		alert("I'm here");
+		//if(student[looproll]==1){
+			alert("I'm here");
+			student[looproll]=0;
 			db.transaction(function(transaction){
-			transaction.executeSql('UPDATE '+currentTable+' SET attendance=0 WHERE studentId=? AND date=?',[student[roll-1],todaysDate]);
+			transaction.executeSql('UPDATE '+currentTable+' SET attendance=0 WHERE studentId=? AND date=?',[batch+roll-1,todaysDate]);
 			});
-		}
+		//}
 		if(roll==$("#rangeSlide").attr("max"))
 		{
 			var presentStudents=0;
-			for(i=0;i<$("#rangeSlide").attr("max");i++){
+			for(i=0;i<44;i++){
 				if(student[i]==1)
+					$("#a"+(i+1)).css("color:red");
 					presentStudents++;
 			}
 			presentStudents+="/"+$("#rangeSlide").attr("max");
 			$("#rollNoDisplay").html(presentStudents);
 		}else{
+		looproll++;
 		$("#rangeSlide").val(++roll);
 		$("#rollNoDisplay").html(roll);
 		}
@@ -66,13 +77,21 @@ $("#addGroup").click(function(){
 $("#option").click(function(){
 	$("#pastRecord").toggle();
 });
-var temp,sqlTableName,sqlTableNameParsed;
 $("#addNewRegister").click(function(){
 	temp=$(".collegeInput").val();
 	temp+=(" "+$('#facultyId').val()+"'"+$('#sectionId').val()+"' "+$('#yearId').val()+"/"+$('#semesterId').val());
 	batch=$('#batchId').val();
+	section=$('#sectionId').val();
+	if(section=="A"){
+		section=1;
+	}else{ if(section=="B"){
+		section=45;
+	}else{
+		section=89;
+	}}
+		
 	db.transaction(function(transaction){
-		transaction.executeSql('INSERT INTO classIndex(nameOfClass,batch) VALUES(?,?)',[temp,batch]);
+		transaction.executeSql('INSERT INTO classIndex(nameOfClass,batch,section) VALUES(?,?,?)',[temp,batch,section]);
 		transaction.executeSql('SELECT id FROM classIndex WHERE nameOfClass=?',[temp],function(transaction,results){
 			sqlTableName=results.rows.item(0).id;
 											});
@@ -88,11 +107,13 @@ $("#addNewRegister").click(function(){
 	currentTable=sqlTableName;
 	db.transaction(function(transaction){
 						transaction.executeSql("SELECT batch FROM classIndex WHERE id=?",[sqlTableNameParsed],function(transaction,results){
+						console.log(sqlTableNameParsed,results.rows);						
 						batch=parseInt(results.rows.item(0).batch);
 						});
 	});
 	localStorage["#class"+sqlTableNameParsed+"md"] = todaysDate;
-	for(i=1;i<45;i++){
+	for(i=section;i<(section+44);i++){
+	alert("I'm Here");
 		(function(i){
 		db.transaction(function(tx){
 				tx.executeSql("INSERT INTO class"+sqlTableNameParsed+"(studentId,date,attendance) VALUES(?,?,?)",[batch+i,todaysDate,0]);

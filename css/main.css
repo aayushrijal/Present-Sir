@@ -106,7 +106,7 @@ body{
 	margin-top: 70px;
 	}
 #rollnoPage{
-	display: none; /*display none here too*/
+	display: block; /*display none here too*/
 	}
 #rollno{
 	border: 1px solid #ccc;

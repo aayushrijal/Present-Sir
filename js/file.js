@@ -3,7 +3,7 @@ var studentId=" "; //handling left for 68102;
 todaysDate=todaysDate.getMonth()+" "+todaysDate.getDate();
 var db = openDatabase('studentDatabase','1.0','Attendance Register',3*1024*1024);
 db.transaction(function(transaction){
-		transaction.executeSql('CREATE TABLE IF NOT EXISTS classIndex(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nameOfClass TEXT NOT NULL,batch INTEGER NOT NULL)',[],initializeDatabase);
+		transaction.executeSql('CREATE TABLE IF NOT EXISTS classIndex(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nameOfClass TEXT NOT NULL,batch INTEGER NOT NULL,section INTEGER NOT NULL)',[],initializeDatabase);
 		});
 //});
 function initializeDatabase(){
@@ -17,27 +17,39 @@ transaction.executeSql('select * from classIndex',[],function(transaction, resul
 										var row = results.rows.item(j);
 			        						$("#classList").prepend($(document.createElement("div")).html(row.nameOfClass).addClass("addGroup").attr("id","class"+row.id));
 										$("#class"+row.id).click(function(){
+										looproll=0;
 										currentTable="class"+row.id;
 										db.transaction(function(transaction){
-											transaction.executeSql("SELECT batch FROM classIndex WHERE id=?",[row.id],function(transaction,results){
+											transaction.executeSql("SELECT batch,section FROM classIndex WHERE id=?",[row.id],function(transaction,results){
 	batch=parseInt(results.rows.item(0).batch);
+	section=parseInt(results.rows.item(0).section);
+	roll=section;
+	$("input[type=range]").attr({min:roll,max:roll+43});
+	$("#rollNoDisplay").text(roll);
 });
 											
 		
 										
 										});
 if(( localStorage["#class"+row.id+"md"] == undefined)||(localStorage["#class"+row.id+"md"] !=todaysDate)){
-alert("not MOdified");
-localStorage["#class"+row.id+"md"] = todaysDate;
-for(i=1;i<45;i++){
+alert("I'm here");
+							
+db.transaction(function(transaction){
+											transaction.executeSql("SELECT section FROM classIndex WHERE id=?",[row.id],function(transaction,results){
+										section=parseInt(results.rows.item(0).section);
+										localStorage["#class"+row.id+"md"] = todaysDate;
+for(i=section;i<(section+44);i++){
+	alert("inserted");
 	(function(i){
 	db.transaction(function(tx){
 				tx.executeSql("INSERT INTO class"+row.id+"(studentId,date,attendance) VALUES(?,?,?)",[batch+i,todaysDate,0]);
 		});
 	})(i);		
 };
+		});
+	});
+
 }else{
-alert("already MOdified");
 }
 										student=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 										currentTable=this.id;
