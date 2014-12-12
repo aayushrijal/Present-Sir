@@ -30,7 +30,7 @@ var looproll=0;
 				if(student[i]==1)
 					presentStudents++;
 			}
-			presentStudents+="/"+$("#rangeSlide").attr("max");
+			presentStudents+="/44";
 			$("#rollNoDisplay").html(presentStudents);
 		}else{
 		looproll++;
@@ -52,7 +52,7 @@ var looproll=0;
 				if(student[i]==1)
 					presentStudents++;
 			}
-			presentStudents+="/"+$("#rangeSlide").attr("max");
+			presentStudents+="/44";
 			$("#rollNoDisplay").html(presentStudents);
 		}else{
 		looproll++;
@@ -90,6 +90,8 @@ $("#addNewRegister").click(function(){
 		transaction.executeSql('INSERT INTO classIndex(nameOfClass,batch,section) VALUES(?,?,?)',[temp,batch,section]);
 		transaction.executeSql('SELECT id FROM classIndex WHERE nameOfClass=?',[temp],function(transaction,results){
 			sqlTableName=results.rows.item(0).id;
+			currentTable="class"+results.rows.item(0).id;
+			//alert(currentTable);
 											});
 		});
 	db.transaction(function(transaction){
@@ -100,7 +102,6 @@ $("#addNewRegister").click(function(){
 		});		
 	$("#rollnoPage").show();
 	$("#newGroupForm").hide();
-	currentTable=sqlTableName;
 	db.transaction(function(transaction){
 						transaction.executeSql("SELECT batch FROM classIndex WHERE id=?",[sqlTableNameParsed],function(transaction,results){
 						console.log(sqlTableNameParsed,results.rows);						

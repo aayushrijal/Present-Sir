@@ -213,7 +213,7 @@ input[type=text]:focus{
 	}
 /*this property is for attendance of overall section*/
 #section-Rollno{
-/*	display: none; */
+	display: none; 
 }
 .table1{
 	padding-top: 20px;

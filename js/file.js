@@ -15,8 +15,11 @@ db.transaction(function(transaction){
 transaction.executeSql('select * from classIndex',[],function(transaction, results){
 		     					 for (var j=0; j<results.rows.length; j++) {
 										var row = results.rows.item(j);
+										
 			        						$("#classList").prepend($(document.createElement("div")).html(row.nameOfClass).addClass("addGroup").attr("id","class"+row.id));
 										$("#class"+row.id).click(function(){
+										//insertTable();			
+										$("#section-Rollno").show();
 										for(i=1;i<45;i++){
 											$("#a"+i).css("background-color","#FFF");
 										}
@@ -104,9 +107,44 @@ db.transaction(function (transaction) {
 	transaction.executeSql('select * from studentDatabase',[],function(transaction, results){
 		     					 for (var j=0; j<results.rows.length; j++) {
 		      							  	var row = results.rows.item(j);
-			        						alert(row["productname"]);
+			        						//alert(row["productname"]);
 						 			}
 								});
 		});
 }
+//{
+	/* function insertTable()
+    {
+	var PresentDay=new Array();
+	for(k=section;k<(section+44);k++){
+	(function(k){	
+	db.transaction(function(transaction){
+		transaction.executeSql('SELECT COUNT(*) FROM ? WHERE studentId=? AND attendance=?',[currentTable,k,attendance],function(transaction,results){
+		presentDay.push(results.row.items(0));		
+			});
+		});
+	})(k);
+	};
+       var theader = "<table id='table2'><thead></thead>";
+        var tbody = "";
+
+        for(var i = 0; i < 44; i++)
+        {
+            tbody += "<tr>";
+            for(var j = 0; j < 2; j++)
+            {
+                tbody += "<td>";
+                if(j==0){
+		tbody += studentId[i];
+		}else{
+		tbody += presentDay[i];
+		}
+                tbody += "</td>"
+            }
+            tbody += "</tr><br />";
+        }
+        var tfooter = "</table>";
+	console.log();
+        //document.getElementById('wrapper').innerHTML = theader + tbody + tfooter;
+    }*/
 

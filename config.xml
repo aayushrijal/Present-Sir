@@ -23,4 +23,9 @@
 	<preference name="phonegap-version"  value="3.1.0" />
 	<preference name="Fullscreen" value="true" />
 	<preference name="orientation"  value="portrait" /> 
+	<icon src="icon.png" />
+	<gap:splash src="res/screen/android/screenldpiportrait.png" gap:platform="android" gap:density="ldpi" />
+    	<gap:splash src="res/screen/android/screenmdpiportrait.png" gap:platform="android" gap:density="mdpi" />
+    	<gap:splash src="res/screen/android/screenhdpiportrait.png" gap:platform="android" gap:density="hdpi" />
+    	<gap:splash src="res/screen/android/screenxhdpiportrait.png" gap:platform="android" gap:density="xhdpi" />
 </widget>
