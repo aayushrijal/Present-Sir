@@ -13,13 +13,13 @@ var looproll=0;
 				});
 	$(".present").click(function(){
 		//if(student[looproll]==0){
+			$("#a"+(looproll+1)).css("background-color","#4CAF50");
 			student[looproll]=1;
 			//student[roll-1][0]++;
 			db.transaction(function(transaction){
 			if(currentTable==" "){
 			alert("Select a table first");
 			}
-			//alert(currentTable+' '+(batch+roll)+' '+todaysDate);
 			transaction.executeSql('UPDATE '+currentTable+' SET attendance=1 WHERE studentId=? AND date=?',[batch+roll-1,todaysDate]);
 			});	
 		//}		
@@ -28,7 +28,6 @@ var looproll=0;
 			var presentStudents=0;
 			for(i=0;i<44;i++){
 				if(student[i]==1)
-					$("#a"+(i+1)).css("display:none");
 					presentStudents++;
 			}
 			presentStudents+="/"+$("#rangeSlide").attr("max");
@@ -40,9 +39,7 @@ var looproll=0;
 		}
 	});
 	$(".absent").click(function(){
-		alert("I'm here");
-		//if(student[looproll]==1){
-			alert("I'm here");
+			$("#a"+(looproll+1)).css("background-color","#ff4444");
 			student[looproll]=0;
 			db.transaction(function(transaction){
 			transaction.executeSql('UPDATE '+currentTable+' SET attendance=0 WHERE studentId=? AND date=?',[batch+roll-1,todaysDate]);
@@ -53,7 +50,6 @@ var looproll=0;
 			var presentStudents=0;
 			for(i=0;i<44;i++){
 				if(student[i]==1)
-					$("#a"+(i+1)).css("color:red");
 					presentStudents++;
 			}
 			presentStudents+="/"+$("#rangeSlide").attr("max");
@@ -75,7 +71,7 @@ $("#addGroup").click(function(){
 		
 	});
 $("#option").click(function(){
-	$("#pastRecord").toggle();
+	//$("#pastRecord").toggle();
 });
 $("#addNewRegister").click(function(){
 	temp=$(".collegeInput").val();
@@ -113,7 +109,6 @@ $("#addNewRegister").click(function(){
 	});
 	localStorage["#class"+sqlTableNameParsed+"md"] = todaysDate;
 	for(i=section;i<(section+44);i++){
-	alert("I'm Here");
 		(function(i){
 		db.transaction(function(tx){
 				tx.executeSql("INSERT INTO class"+sqlTableNameParsed+"(studentId,date,attendance) VALUES(?,?,?)",[batch+i,todaysDate,0]);
