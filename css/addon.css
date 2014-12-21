@@ -16,11 +16,11 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
-    height: 20px;
-    width: 20px;
+    height: 50px;
+    width: 50px;
     border-radius: 32%;
     background: grey;
-    margin-top: -7px;
+    margin-top: -22px;
 }
 
 input[type=range]:focus {
