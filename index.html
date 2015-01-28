@@ -4,11 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Attendance</title>
-	 <script src="js/jquery-1.11.1.min.js"></script>
-	<link media="all" type="text/css" rel="stylesheet" href="css/main.css" >
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery.touchy.min.js"></script>
+ 	<link media="all" type="text/css" rel="stylesheet" href="css/main.css" >
 	<link media="all" type="text/css" rel="stylesheet" href="css/addon.css" >
- <script type="text/javascript" src="js/file.js"></script>
-	
+ 	
 </head>
 <body>
 <div id="mainContainer" >
@@ -36,7 +36,7 @@
 	<div id="subContainer">
 	<div id="rollnoPage">
 		<div id="rollno">
-			<span><h1 id="rollNoDisplay">2</h1></span>
+			<span><h1 id="rollNoDisplay">1</h1></span>
 		</div>
 		<div id="buttons">
 			<img class="present" src="icons/present.svg" width="60">
@@ -96,6 +96,12 @@
 						<option value='I' selected>I</option>
 						<option value='II'>II</option>
 					</select>
+				<div class="hr1"></div>
+				<label for='rollstart' class="rollstart">Roll No Starts From</label>
+					<input type="text" id="rollInput" value="1"/>
+				<div class="hr1"></div>
+				<label for='totalnumber' class="totalnumber">No of Students</label>
+					<input type="text" id="totalNumber" value="44"/>
 				<div class="hr1"></div>	
 			</form>
 			<button value="add" class="addButton" id="addNewRegister">Add</button>
@@ -162,6 +168,14 @@
 						<div class="td1" id="a42">42</div>
 						<div class="td1" id="a43">43</div>
 						<div class="td1" id="a44">44</div>
+						<div class="td1" id="a45">45</div>
+						<div class="td1" id="a46">46</div>
+						<div class="td1" id="a47">47</div>
+						<div class="td1" id="a48">48</div>
+					</div>
+					<div class="tr8">
+						<div class="td1" id="a49">49</div>
+						<div class="td1" id="a50">50</div>
 					</div>
 				</div>
 			</div>
@@ -172,7 +186,8 @@
 	</div>
     <script type="text/javascript" src="js/exact.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
-    <script type="text/javascript" src="js/responsiveCall.js"></script>		
+    <script type="text/javascript" src="js/responsiveCall.js"></script>	
+    <script type="text/javascript" src="js/touchEvents.js"></script>				
 	
 </div>
 </body>

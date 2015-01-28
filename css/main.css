@@ -226,6 +226,7 @@ input[type=text]:focus{
 	text-align: right;
 }
 .td1{
+	background-color:#FFF;
 	text-align: center;
 	border: 1px solid #878787;
 	width: 20px;

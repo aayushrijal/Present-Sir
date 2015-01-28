@@ -6,7 +6,7 @@ $(".absent").click(function(){
 	});
 $("#rangeSlide").on("change",function(){
 				roll=parseInt($("#rangeSlide").val());
-				iloop=roll-section-1;
+				iloop=roll-section;
 				$("#rollNoDisplay").html(roll);
 				});
 $("#leftPanel").on("click",function(){$("#leftPanel").toggleClass("leftPanel1 leftPanel2")});
@@ -15,10 +15,12 @@ $(".menuIcon").click(function(){
 	});
 $("#addGroup").click(function(){
 	$("#rollnoPage").hide();
+	$("#section-Rollno").hide();
 	$("#newGroupForm").show();
 	});
 $("#cancelNewRegister").click(function(){
 	$("#rollnoPage").show();
+	$("#section-Rollno").show();
 	$("#newGroupForm").hide();
 });
 sidebarLoad();
