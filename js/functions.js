@@ -5,29 +5,29 @@ function checkMark(pa){
 		return;
 	}
 	if(pa==1)
-		$("#a"+(iloop+1)).css("background-color","#4CAF50");
+		$("#a"+(iloop+1)).css("background-color","#00E676");
 	else
-		$("#a"+(iloop+1)).css("background-color","#ff4444");
+		$("#a"+(iloop+1)).css("background-color","#FFFFFF");//#ff4444");
 	student[iloop]=pa;
 	var currentStudent=roll;
 	
 	console.log("I'm here",currentStudent," ",currentTable);
 	db.transaction(function(tx){
 		tx.executeSql('UPDATE '+currentTable+' SET attendance=? WHERE studentId=? AND date=?',[pa,$("#rangeSlide").val(),todaysDate]);
+		if(roll==$("#rangeSlide").attr("max")){
+			for(i=0;i<totalNo;i++){
+				if(student[i]==1)
+					presentNo++;
+				}
+			$("#rollNoDisplay").html(presentNo+'/'+(totalNo-1));
+			presentNo=0;
+			}else{
+				$("#rangeSlide").val(++roll);
+				$("#rollNoDisplay").html(roll);
+				iloop++;
+				}
 		});
-	if(roll==$("#rangeSlide").attr("max")){
-		for(i=0;i<totalNo;i++){
-			if(student[i]==1)
-				presentNo++;
-		}
-		$("#rollNoDisplay").html(presentNo+'/'+(totalNo-1));
-		presentNo=0;
-		return;
 	}
-	iloop++;
-	$("#rangeSlide").val(++roll);
-	$("#rollNoDisplay").html(roll);
-}
 function sidebarLoad(){
 	db.readTransaction(function(tx){
 		tx.executeSql('select * from classIndex',[],function(transaction, results){
@@ -35,24 +35,23 @@ function sidebarLoad(){
 					var row = results.rows.item(j);
 					classNumberArray.push([row.id,row.rollStart,row.nos]);
 					$("#classList").prepend($(document.createElement("div")).html(row.nameOfClass).addClass("addGroup").attr("id","class"+row.id));
+					console.log(row.id);
 					$("#class"+row.id).click(function(){
+						$("#leftPanel").toggleClass("leftPanel1 leftPanel2");
 						currentWorkingTable(this.id,row.id,this.innerHTML);						
-					});	
-	}	
+						});	
+					}
+			});
 		});
-	});
-	
-
 }
 function currentWorkingTable(tId,rowId,tN){
 		currentTable=tId;
 		//alert("currentTable");
 		$("#section-Rollno").show();
 		for(i=1;i<51;i++){
-			$("#a"+i).css("background-color","#FFF");
+			$("#a"+i).css("background-color","#FFFFFF");
 		}
 		iloop=0;
-		student=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 		tableLoad(rowId);
 		$("#classDisplay").html(tN);
 	};
@@ -61,6 +60,7 @@ function tableLoad(rowId){
 	for(i=0;i<classNumberArray.length;i++){
 		if(classNumberArray[i][0]==rowId){
 			rollStart=parseInt(classNumberArray[i][1]);
+		student=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 			totalNo=parseInt(classNumberArray[i][2]);
 			break;
 		}
@@ -93,7 +93,8 @@ function tableLoad(rowId){
 	if(( localStorage["#"+currentTable+"md"] == undefined)||(localStorage["#"+currentTable+"md"] !=todaysDate)){
 	localStorage["#"+currentTable+"md"] = todaysDate;
 	console.log("I'm here too");
-	for(i=rollStart;i<totalNo;i++){
+	var totalFromStart=totalNo+rollStart-1;
+	for(i=rollStart;i<totalFromStart;i++){
 		(function(i){
 		db.transaction(function(tx){
 				tx.executeSql("INSERT INTO "+currentTable+"(studentId,date,attendance) VALUES(?,?,?)",[i,todaysDate,0]);
@@ -110,9 +111,9 @@ function tableLoad(rowId){
 			//$("#a"+i).text(i+rollStart-1).show();
 			student[i-1]=results.rows.item(i-1).attendance;
 			if(results.rows.item(i-1).attendance==1)
-				$("#a"+i).css("background-color","#4CAF50");
+				$("#a"+i).css("background-color","#00E676");
 			else
-				$("#a"+i).css("background-color","#ff4444");
+				$("#a"+i).css("background-color","#FFFFFF");
 		}
 		});
 	});

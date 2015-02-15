@@ -24,6 +24,7 @@ body{
 	-webkit-transform: translateX(-100%);
 	transition: all 0.3s;
 	overflow: hidden;
+	z-index:2;
 	}
 .leftPanel2{
 	transform: translateX(-1%);
@@ -37,8 +38,23 @@ body{
 	background: #f5f5f5;
 	position: absolute;
 	box-shadow: 1px 2px 4px #9e9e9e;
+	z-index:2;
 	}
-
+.bottomPanel{
+	transform: translateX(0px);
+	-webkit-transform: translateX(0px);
+	transition: all 0.3s;
+	margin: -6px;
+	width: 100.5%;
+	overflow:hidden;
+	top: 62px;
+	position: absolute;
+	z-index:1;
+	height: 92%;
+	background: #f5f5f5;
+	position: absolute;
+	box-shadow: 1px 2px 4px #9e9e9e;
+	}
 #innerpanelText{
 	font-family: Robotothin;
 	padding: 40px;
@@ -80,7 +96,7 @@ body{
 	background-color: #135571;
 	color: #fff;
 	font-family: arial;
-	z-index: 1;
+	z-index: 4;
 	}
 .menuIcon{
 /*	border: 1px solid #fff;*/
@@ -101,6 +117,7 @@ body{
 	font-family: arial;
 	color: #fff;
 	box-shadow: 2px 3px 4px #9e9e9e;
+	z-index: 3;
 	}
 #subContainer{
 	margin-top: 70px;
@@ -125,7 +142,7 @@ body{
 /*	border: 1px solid #000;*/
 	}
 .present{
-	background-color: #4CAF50;
+	background-color: #00E676;/*#4CAF50;*/
 	padding: 1px 39px;
 	display: inline-block;
 	margin: 0 5px;
@@ -229,10 +246,10 @@ input[type=text]:focus{
 	background-color:#FFF;
 	text-align: center;
 	border: 1px solid #878787;
-	width: 20px;
-	border-radius: 60%;
+	width: 30px;
+	border-radius: 5%;
 	display: inline-block;
-	margin: 10px 5px;
+	margin: 2px 0px;
 	padding: 2px;
 }
 /*the property is for attendance of overall section ends here*/

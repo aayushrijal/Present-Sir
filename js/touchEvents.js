@@ -7,7 +7,7 @@
 		$("#leftPanel").toggleClass("leftPanel1 leftPanel2");  
         },
         //Default is 75px, set to 0 for demo so any distance triggers swipe
-         threshold:0
+         threshold:50
       });
 	$("#rollno").swipe( {
         //Generic swipe handler for all directions
@@ -19,10 +19,12 @@
 			case "left":
 			checkMark(0);
 			break;
+			case "top":
+			$("#section-Rollno").addClass("bottomPanel");
 		}  
         },
 	tap:function(event,target){
-			alert("Hello");
+			$("#section-Rollno").addClass("bottomPanel");
 	},
         //Default is 75px, set to 0 for demo so any distance triggers swipe
          threshold:50
@@ -35,4 +37,9 @@
 			$("#newGroupForm").show();
 	},threshold:50
 	});
+	$("#section-Rollno").swipe({
+		tap:function(event,target){
+			$("#section-Rollno").removeClass("bottomPanel");
+		},threshold:50
+		});
     });
