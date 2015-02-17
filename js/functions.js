@@ -1,5 +1,4 @@
 function checkMark(pa){
-	console.log("I'm here");
 	if(currentTable==0){
 		alert("Select a class or create a new class to modify!");
 		return;
@@ -10,8 +9,6 @@ function checkMark(pa){
 		$("#a"+(iloop+1)).css("background-color","#FFFFFF");//#ff4444");
 	student[iloop]=pa;
 	var currentStudent=roll;
-	
-	console.log("I'm here",currentStudent," ",currentTable);
 	db.transaction(function(tx){
 		tx.executeSql('UPDATE '+currentTable+' SET attendance=? WHERE studentId=? AND date=?',[pa,$("#rangeSlide").val(),todaysDate]);
 		if(roll==$("#rangeSlide").attr("max")){
@@ -46,7 +43,6 @@ function sidebarLoad(){
 }
 function currentWorkingTable(tId,rowId,tN){
 		currentTable=tId;
-		//alert("currentTable");
 		$("#section-Rollno").show();
 		for(i=1;i<51;i++){
 			$("#a"+i).css("background-color","#FFFFFF");
@@ -102,7 +98,6 @@ function tableLoad(rowId){
 		})(i);		
 	};
 	}else{
-	//alert("I'm here");
 	db.readTransaction(function(tx){
 		tx.executeSql("SELECT attendance FROM "+currentTable+" WHERE date=?",[todaysDate],function(transaction,results){
 		var rows=results.rows;
@@ -117,6 +112,7 @@ function tableLoad(rowId){
 		}
 		});
 	});
+	dateLister();
 	}
 }
 function tablePresentCheck(tN){
@@ -134,3 +130,70 @@ function tablePresentCheck(tN){
 	});
 	return a;
 }
+function dateLister(){
+	db.readTransaction(function(tx){
+		tx.executeSql("SELECT date FROM "+currentTable+" WHERE studentId=? ORDER BY date DESC LIMIT 2",[rollStart],function(transaction,results){
+			dateList.push(results.rows.item(0).date,results.rows.item(1).date);
+		});
+	});
+}
+var t1,t2;
+function attendanceList(){
+	pastData=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];	
+	db.readTransaction(function(tx){
+		tx.executeSql("SELECT COUNT(*) AS count FROM "+currentTable+" WHERE attendance=1 GROUP BY studentId",[],function(transaction,results){
+			t1=results.rows;
+			for(i=0;i<results.rows.length;i++){
+				//rows=results.rows;
+				//pastData.push([results.rows.item(i).count,0,0]);
+				pastData[i]=results.rows.item(i).count;
+				}
+				});
+	});
+	db.readTransaction(function(tx){
+		tx.executeSql("SELECT distinct t1.studentId as ID,(SELECT attendance from "+currentTable+" AS t2 where t2.studentId=t1.studentId AND t2.date=?) as at1,(SELECT attendance from "+currentTable+" AS t3 where t3.studentId=t1.studentId AND t3.date=?) as at2 from "+currentTable+" AS t1",[dateList[0],dateList[1]],function(transaction,results){
+			for(j=0;j<results.rows.length;j++){
+					console.log("j is",j);
+					var $tr = $('<tr/>');			
+					$tr.append($('<td/>').html(rollStart+j).addClass("pastRoll"));
+					var cls=((results.rows.item(j).at2==0)?"pastRoll1":"pastRoll");					
+					$tr.append($('<td/>').addClass(cls));
+					cls=((results.rows.item(j).at1==0)?"pastRoll1":"pastRoll");					
+					$tr.append($('<td/>').addClass(cls));
+					$tr.append($('<td/>').html(pastData[i]).addClass("pastRoll1"));
+					$('#table tr:last').after($tr);	
+					//pastData[j/2][1]=results.rows.item(j).attendance;
+					//pastData[j/2][2]=results.rows.item(j+1).attendance;
+				}
+			/*
+			for(i=0;i<pastData.length;i++){
+					var $tr = $('<tr/>');
+					$tr.append($('<td/>').html(rollStart+i).addClass("pastRoll"));
+					//pastData[i][0]));
+					var cls=(pastData[i][2]==0?"pastRoll1":"pastRoll");
+      					$tr.append($('<td/>').addClass(cls));//pastData[i][1]));
+					cls=(pastData[i][1]==0?"pastRoll1":"pastRoll");
+					$tr.append($('<td/>').addClass(cls));
+    					$tr.append($('<td/>').html(pastData[i][0]).addClass("pastRoll1"));
+					$('#table tr:last').after($tr);
+					//here i was coding
+				}*/
+		});
+	});
+	
+};
+/*function presentDaysCount(){
+	//day list
+	db.readTransaction(function(tx){
+		tx.executeSql("SELECT date FROM class3 WHERE studentId=100 ORDER BY date DESC",[],function(transaction,results){
+		var rows=results.rows;
+		r=rows;
+				});
+	});
+	db.readTransaction(function(tx){
+		tx.executeSql("SELECT COUNT(*) AS c FROM class3 WHERE attendance=1 GROUP BY studentId",[],function(transaction,results){
+		var rows=results.rows;
+		r=rows;
+				});
+	});
+}*/

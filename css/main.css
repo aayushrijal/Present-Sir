@@ -252,4 +252,22 @@ input[type=text]:focus{
 	margin: 2px 0px;
 	padding: 2px;
 }
+.pastRoll{
+	color:#FFF;	
+	background-color:#00E676;
+	text-align: center;
+	border: 2px solid #878787;
+	width: 40px;
+	margin: 2px 0px;
+	padding: 2px;
+}
+.pastRoll1{
+	color:#000;	
+	background-color:#FFF;
+	text-align: center;
+	border: 2px solid #878787;
+	width: 40px;
+	margin: 2px 0px;
+	padding: 2px;
+}
 /*the property is for attendance of overall section ends here*/

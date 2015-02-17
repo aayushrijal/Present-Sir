@@ -8,6 +8,8 @@ var presentNo=0; // total no of present students
 var todaysDate=new Date();
 var totalNo=0,rollStart=0;
 var classNumberArray=new Array();
+var dateList=new Array();
+var pastData=new Array();
 todaysDate=todaysDate.getMonth()+" "+todaysDate.getDate();		
 //variables declaration end
 var db = openDatabase('studentDatabase','1.0','Attendance Register',3*1024*1024);
