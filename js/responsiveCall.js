@@ -24,4 +24,15 @@ $("#cancelNewRegister").click(function(){
 	$("#section-Rollno").show();
 	$("#newGroupForm").hide();
 });
+$("#option").click(function(){
+		if(currentTable==0){
+			alert("Select a Table First");
+			return;
+			}
+		$("#section-Rollno").hide();
+		$("#rollnoPage").hide();
+		$("#leftPanel").toggleClass("leftPanel1 leftPanel2");
+		attendanceList();
+		
+	})
 sidebarLoad();

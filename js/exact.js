@@ -9,7 +9,7 @@ var todaysDate=new Date();
 var totalNo=0,rollStart=0;
 var classNumberArray=new Array();
 var dateList=new Array();
-var pastData=new Array();
+var pastData=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 todaysDate=todaysDate.getMonth()+" "+todaysDate.getDate();		
 //variables declaration end
 var db = openDatabase('studentDatabase','1.0','Attendance Register',3*1024*1024);
@@ -70,6 +70,7 @@ $('#addNewRegister').click(function(){
 					});
 			//tableLoad(className);
 			$("#rollnoPage").show();
+			pastData=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 			currentWorkingTable(currentTable,classNumberArray[classNumberArray.length-1][0],className);
 			$("#newGroupForm").hide();
 			//$("#section-Rollno").show();
