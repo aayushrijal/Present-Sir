@@ -12,6 +12,7 @@ var dateList=new Array();
 var pastData=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 todaysDate=todaysDate.getMonth()+" "+todaysDate.getDate();		
 //variables declaration end
+
 var db = openDatabase('studentDatabase','1.0','Attendance Register',3*1024*1024);
 db.transaction(function(tx){
 	tx.executeSql('CREATE TABLE IF NOT EXISTS classIndex(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,nameOfClass TEXT NOT NULL,batch INTEGER NOT NULL,rollStart INTEGER NOT NULL,nos INTEGER NOT NULL)',[]);
@@ -26,8 +27,8 @@ $('#addNewRegister').click(function(){
 	className+=(" "+$('#facultyId').val()+"'"+$('#sectionId').val()+"' "+$('#yearId').val()+"/"+$('#semesterId').val());
 	db.readTransaction(function(tx){
 		tx.executeSql("SELECT * FROM classIndex WHERE nameOfClass=?",[className],function(transaction,results){	
-		if(results.rows.length>0){
-			className=undefined;
+			if(results.rows.length>0){
+				className=undefined;
 			}
 		});
 	});	
@@ -35,29 +36,18 @@ $('#addNewRegister').click(function(){
 	section=$('#sectionId').val();
 	rollStart=$('#rollInput').val();
 	totalNo=$('#totalNumber').val();
-	/*switch(section){
-	case "A":
-		section=1;
-		break;
-	case "B":
-		section=45;
-		break;
-	case "C":
-		section=89;
-		break;
-	}*/
 	db.transaction(function(tx){
 		if(className==undefined){
 			alert("Class already Exists");
 			return;
 		}
 		tx.executeSql('INSERT INTO classIndex(nameOfClass,batch,rollStart,nos) VALUES(?,?,?,?)',[className,batch,rollStart,totalNo],function(transaction,results){
-		sqlTableName=results.insertId;
-		classNumberArray.push([sqlTableName,rollStart,totalNo])
-		currentTable="class"+sqlTableName;
+			sqlTableName=results.insertId;
+			classNumberArray.push([sqlTableName,rollStart,totalNo])
+			currentTable="class"+sqlTableName;
 		});
 		//while(currentTableTemp==currentTable);
-		});
+	});
 	db.transaction(function(tx){
 		if(className==undefined){
 			return;
@@ -65,17 +55,15 @@ $('#addNewRegister').click(function(){
 		tx.executeSql('CREATE TABLE IF NOT EXISTS '+currentTable+'(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, studentId INTEGER NOT NULL,date TEXT NOT NULL,attendance INTEGER );',[],function(){
 			$("#classList").prepend($(document.createElement("div")).html(className).addClass("addGroup").attr("id",currentTable));
 			$("#"+currentTable).click(function(){
-						//alert(this.id+" "+this.innerHTML);
-						currentWorkingTable(this.id,this.id.slice(5),this.innerHTML);						
-					});
+				//alert(this.id+" "+this.innerHTML);
+				currentWorkingTable(this.id,this.id.slice(5),this.innerHTML);						
+			});
 			//tableLoad(className);
 			$("#rollnoPage").show();
 			pastData=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 			currentWorkingTable(currentTable,classNumberArray[classNumberArray.length-1][0],className);
 			$("#newGroupForm").hide();
 			//$("#section-Rollno").show();
-				});
 		});
-
-	
+	});
 });
